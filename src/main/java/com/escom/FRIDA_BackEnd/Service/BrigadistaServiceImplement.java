@@ -5,6 +5,7 @@ import com.escom.FRIDA_BackEnd.Repository.BrigadistaRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BrigadistaServiceImplement implements BrigadistaService {
@@ -13,6 +14,7 @@ public class BrigadistaServiceImplement implements BrigadistaService {
     private BrigadistaRepository repositorio;
     
     @Override
+    @Transactional
     public Brigadista crearBrigdadista(Brigadista brig) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
