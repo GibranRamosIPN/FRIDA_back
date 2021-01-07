@@ -20,15 +20,15 @@ public class Brigadista {
     @Column
     private String psswrd;
     @Column
-    private String ultimaL_calleYnumero;    
+    private String ultima_calle_numero;    
     @Column
-    private String ultimaL_colonia;    
+    private String ultima_colonia;    
     @Column
-    private String ultimaL_cp;    
+    private String ultima_cp;    
     @Column
-    private String ultimaL_alcaldiaOmunicipio;    
+    private String ultima_alcaldia_municipio;    
     @Column
-    private String ultimaL_estado;  
+    private String ultima_estado;  
     @Column
     private Integer idCasoAsignado;
 
@@ -80,44 +80,44 @@ public class Brigadista {
         this.psswrd = psswrd;
     }
 
-    public String getUltimaL_calleYnumero() {
-        return ultimaL_calleYnumero;
+    public String getUltima_calle_numero() {
+        return ultima_calle_numero;
     }
 
-    public void setUltimaL_calleYnumero(String ultimaL_calleYnumero) {
-        this.ultimaL_calleYnumero = ultimaL_calleYnumero;
+    public void setUltima_calle_numero(String ultima_calle_numero) {
+        this.ultima_calle_numero = ultima_calle_numero;
     }
 
-    public String getUltimaL_colonia() {
-        return ultimaL_colonia;
+    public String getUltima_colonia() {
+        return ultima_colonia;
     }
 
-    public void setUltimaL_colonia(String ultimaL_colonia) {
-        this.ultimaL_colonia = ultimaL_colonia;
+    public void setUltima_colonia(String ultima_colonia) {
+        this.ultima_colonia = ultima_colonia;
     }
 
-    public String getUltimaL_cp() {
-        return ultimaL_cp;
+    public String getUltima_cp() {
+        return ultima_cp;
     }
 
-    public void setUltimaL_cp(String ultimaL_cp) {
-        this.ultimaL_cp = ultimaL_cp;
+    public void setUltima_cp(String ultima_cp) {
+        this.ultima_cp = ultima_cp;
     }
 
-    public String getUltimaL_alcaldiaOmunicipio() {
-        return ultimaL_alcaldiaOmunicipio;
+    public String getUltima_alcaldia_municipio() {
+        return ultima_alcaldia_municipio;
     }
 
-    public void setUltimaL_alcaldiaOmunicipio(String ultimaL_alcaldiaOmunicipio) {
-        this.ultimaL_alcaldiaOmunicipio = ultimaL_alcaldiaOmunicipio;
+    public void setUltima_alcaldia_municipio(String ultima_alcaldia_municipio) {
+        this.ultima_alcaldia_municipio = ultima_alcaldia_municipio;
     }
 
-    public String getUltimaL_estado() {
-        return ultimaL_estado;
+    public String getUltima_estado() {
+        return ultima_estado;
     }
 
-    public void setUltimaL_estado(String ultimaL_estado) {
-        this.ultimaL_estado = ultimaL_estado;
+    public void setUltima_estado(String ultima_estado) {
+        this.ultima_estado = ultima_estado;
     }
 
     public Integer getIdCasoAsignado() {
@@ -127,5 +127,7 @@ public class Brigadista {
     public void setIdCasoAsignado(Integer idCasoAsignado) {
         this.idCasoAsignado = idCasoAsignado;
     }
+
+    
         
 }
