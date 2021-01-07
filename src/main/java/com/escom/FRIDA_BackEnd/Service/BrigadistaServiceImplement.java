@@ -14,7 +14,6 @@ public class BrigadistaServiceImplement implements BrigadistaService {
     private BrigadistaRepository repositorio;
     
     @Override
-    @Transactional
     public Brigadista crearBrigdadista(Brigadista brig) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

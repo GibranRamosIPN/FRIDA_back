@@ -4,13 +4,12 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ciudadano")
 public class Ciudadano {
     
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCiudadano;    
+    private Integer idCiudadano;    
     @Column
     private String nombre;    
     @Column
@@ -34,13 +33,13 @@ public class Ciudadano {
     @Column
     private String psswrd;    
     @Column
-    private int idRecomendacion;
+    private Integer idRecomendacion;
 
-    public int getIdCiudadano() {
+    public Integer getIdCiudadano() {
         return idCiudadano;
     }
 
-    public void setIdCiudadano(int idCiudadano) {
+    public void setIdCiudadano(Integer idCiudadano) {
         this.idCiudadano = idCiudadano;
     }
 
@@ -132,11 +131,11 @@ public class Ciudadano {
         this.psswrd = psswrd;
     }
 
-    public int getIdRecomendacion() {
+    public Integer getIdRecomendacion() {
         return idRecomendacion;
     }
 
-    public void setIdRecomendacion(int idRecomendacion) {
+    public void setIdRecomendacion(Integer idRecomendacion) {
         this.idRecomendacion = idRecomendacion;
     }
     

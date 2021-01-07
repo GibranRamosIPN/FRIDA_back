@@ -4,13 +4,12 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "caso")
 public class Caso {
     
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCaso;    
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idCaso;    
     @Column
     private String nombre;    
     @Column
@@ -26,21 +25,21 @@ public class Caso {
     @Column
     private String estado;    
     @Column
-    private int statusCaso;    
+    private Integer statusCaso;    
     @Column
     private Date fechaReportado;    
     @Column
     private Date fechaEvaluado;    
     @Column
-    private int idCuestionario;    
+    private Integer idCuestionario;    
     @Column
-    private int idCiudadano;
+    private Integer idCiudadano;
 
-    public int getIdCaso() {
+    public Integer getIdCaso() {
         return idCaso;
     }
 
-    public void setIdCaso(int idCaso) {
+    public void setIdCaso(Integer idCaso) {
         this.idCaso = idCaso;
     }
 
@@ -100,11 +99,11 @@ public class Caso {
         this.estado = estado;
     }
 
-    public int getStatusCaso() {
+    public Integer getStatusCaso() {
         return statusCaso;
     }
 
-    public void setStatusCaso(int statusCaso) {
+    public void setStatusCaso(Integer statusCaso) {
         this.statusCaso = statusCaso;
     }
 
@@ -124,19 +123,19 @@ public class Caso {
         this.fechaEvaluado = fechaEvaluado;
     }
 
-    public int getIdCuestionario() {
+    public Integer getIdCuestionario() {
         return idCuestionario;
     }
 
-    public void setIdCuestionario(int idCuestionario) {
+    public void setIdCuestionario(Integer idCuestionario) {
         this.idCuestionario = idCuestionario;
     }
 
-    public int getIdCiudadano() {
+    public Integer getIdCiudadano() {
         return idCiudadano;
     }
 
-    public void setIdCiudadano(int idCiudadano) {
+    public void setIdCiudadano(Integer idCiudadano) {
         this.idCiudadano = idCiudadano;
     }
     

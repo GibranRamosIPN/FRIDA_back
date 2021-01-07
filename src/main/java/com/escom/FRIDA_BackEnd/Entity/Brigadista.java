@@ -3,13 +3,12 @@ package com.escom.FRIDA_BackEnd.Entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "brigadista")
 public class Brigadista {
         
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idBrigadista;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idBrigadista;
     @Column
     private String nombre;    
     @Column
@@ -31,13 +30,13 @@ public class Brigadista {
     @Column
     private String ultimaL_estado;  
     @Column
-    private int idCasoAsignado;
+    private Integer idCasoAsignado;
 
-    public int getIdBrigadista() {
+    public Integer getIdBrigadista() {
         return idBrigadista;
     }
 
-    public void setIdBrigadista(int idBrigadista) {
+    public void setIdBrigadista(Integer idBrigadista) {
         this.idBrigadista = idBrigadista;
     }
 
@@ -121,11 +120,11 @@ public class Brigadista {
         this.ultimaL_estado = ultimaL_estado;
     }
 
-    public int getIdCasoAsignado() {
+    public Integer getIdCasoAsignado() {
         return idCasoAsignado;
     }
 
-    public void setIdCasoAsignado(int idCasoAsignado) {
+    public void setIdCasoAsignado(Integer idCasoAsignado) {
         this.idCasoAsignado = idCasoAsignado;
     }
         
