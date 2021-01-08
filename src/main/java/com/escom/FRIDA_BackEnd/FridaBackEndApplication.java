@@ -2,8 +2,12 @@ package com.escom.FRIDA_BackEnd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@SpringBootApplication(scanBasePackages = {"com.escom.FRIDA_BackEnd", "com.escom.FRIDA_BackEnd.Entity",
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class }, scanBasePackages = {"com.escom.FRIDA_BackEnd", "com.escom.FRIDA_BackEnd.Entity",
 "com.escom.FRIDA_BackEnd.Repository", "com.escom.FRIDA_BackEnd.Controller", "com.escom.FRIDA_BackEnd.Service"})
 public class FridaBackEndApplication {
 
@@ -11,4 +15,13 @@ public class FridaBackEndApplication {
             SpringApplication.run(FridaBackEndApplication.class, args);
 	}
 
+        @Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+                            registry.addMapping("/localhost:4200/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");;                                
+			}
+		};
+	}
 }
