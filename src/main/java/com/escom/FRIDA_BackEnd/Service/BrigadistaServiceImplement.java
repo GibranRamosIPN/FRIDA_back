@@ -14,28 +14,36 @@ public class BrigadistaServiceImplement implements BrigadistaService {
     private BrigadistaRepository repositorio;
     
     @Override
-    public Brigadista crearBrigdadista(Brigadista brig) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Brigadista crearBrigadista(Brigadista brig) {
+        return repositorio.save(brig);
     }
 
     @Override
-    public Brigadista actualizarBrigdadista(Brigadista brig) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Brigadista actualizarBrigadista(Brigadista brig) {
+        return repositorio.save(brig);
     }
 
     @Override
-    public Brigadista eliminarBrigdadista(int idBrigadista) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Brigadista eliminarBrigadista(Integer idBrigadista) {
+        Brigadista b = repositorio.findByIdBrigadista(idBrigadista);
+        if (b != null) {
+            repositorio.delete(b);
+        }
+        return b;
     }
 
     @Override
     public List<Brigadista> listarBrigadistas() {
         return repositorio.findAll();
     }
+    
+    @Override
+    public Brigadista listarId(Integer idBrigadista) {
+        return repositorio.findByIdBrigadista(idBrigadista);
+    }
 
     @Override
     public List<Brigadista> listarXalcaldia(String alcaldia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }    
 }

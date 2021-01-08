@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BrigadistaService {
     
-    Brigadista crearBrigdadista(Brigadista brig);
-    Brigadista actualizarBrigdadista(Brigadista brig);
-    Brigadista eliminarBrigdadista(int idBrigadista);    
+    Brigadista crearBrigadista(Brigadista brig);
+    Brigadista actualizarBrigadista(Brigadista brig);
+    Brigadista eliminarBrigadista(Integer idBrigadista); 
     List<Brigadista>listarBrigadistas();
-    List<Brigadista>listarXalcaldia(String alcaldia);    
+    Brigadista listarId(Integer idBrigadista);
+    List<Brigadista>listarXalcaldia(String alcaldia);        
     
 }

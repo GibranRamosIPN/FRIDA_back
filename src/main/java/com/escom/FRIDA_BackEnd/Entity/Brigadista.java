@@ -7,7 +7,7 @@ public class Brigadista {
         
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBrigadista;
     @Column
     private String nombre;    
