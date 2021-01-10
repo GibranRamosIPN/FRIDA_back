@@ -13,19 +13,19 @@ public class Ciudadano {
     @Column
     private String nombre;    
     @Column
-    private String apellidoPaterno;    
+    private String apellido_paterno;    
     @Column
-    private String apellidoMaterno;    
+    private String apellido_materno;    
     @Column
-    private Date fechaNacimiento;    
+    private Date fecha_nacimiento;    
     @Column
-    private String calleYnumero;    
+    private String calle_numero;    
     @Column
     private String colonia;    
     @Column
     private String cp;    
     @Column
-    private String alcaldiaOmunicipio;    
+    private String alcaldia_municipio;    
     @Column
     private String estado;    
     @Column
@@ -33,14 +33,14 @@ public class Ciudadano {
     @Column
     private String psswrd;    
     @Column
-    private Integer idRecomendacion;
+    private Integer id_recomendacion;
 
-    public Integer getIdCiudadano() {
+    public Integer getId_ciudadano() {
         return idCiudadano;
     }
 
-    public void setIdCiudadano(Integer idCiudadano) {
-        this.idCiudadano = idCiudadano;
+    public void setId_ciudadano(Integer id_ciudadano) {
+        this.idCiudadano = id_ciudadano;
     }
 
     public String getNombre() {
@@ -51,36 +51,36 @@ public class Ciudadano {
         this.nombre = nombre;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public String getApellido_paterno() {
+        return apellido_paterno;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
+    public void setApellido_paterno(String apellido_paterno) {
+        this.apellido_paterno = apellido_paterno;
     }
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
+    public String getApellido_materno() {
+        return apellido_materno;
     }
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setApellido_materno(String apellido_materno) {
+        this.apellido_materno = apellido_materno;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getFecha_nacimiento() {
+        return fecha_nacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFecha_nacimiento(Date fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    public String getCalleYnumero() {
-        return calleYnumero;
+    public String getCalle_numero() {
+        return calle_numero;
     }
 
-    public void setCalleYnumero(String calleYnumero) {
-        this.calleYnumero = calleYnumero;
+    public void setCalle_numero(String calle_numero) {
+        this.calle_numero = calle_numero;
     }
 
     public String getColonia() {
@@ -99,12 +99,12 @@ public class Ciudadano {
         this.cp = cp;
     }
 
-    public String getAlcaldiaOmunicipio() {
-        return alcaldiaOmunicipio;
+    public String getAlcaldia_municipio() {
+        return alcaldia_municipio;
     }
 
-    public void setAlcaldiaOmunicipio(String alcaldiaOmunicipio) {
-        this.alcaldiaOmunicipio = alcaldiaOmunicipio;
+    public void setAlcaldia_municipio(String alcaldia_municipio) {
+        this.alcaldia_municipio = alcaldia_municipio;
     }
 
     public String getEstado() {
@@ -131,12 +131,12 @@ public class Ciudadano {
         this.psswrd = psswrd;
     }
 
-    public Integer getIdRecomendacion() {
-        return idRecomendacion;
+    public Integer getId_recomendacion() {
+        return id_recomendacion;
     }
 
-    public void setIdRecomendacion(Integer idRecomendacion) {
-        this.idRecomendacion = idRecomendacion;
+    public void setId_recomendacion(Integer id_recomendacion) {
+        this.id_recomendacion = id_recomendacion;
     }
-    
+
 }
