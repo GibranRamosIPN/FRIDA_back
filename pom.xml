@@ -12,7 +12,10 @@
 	<artifactId>FRIDA_BackEnd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FRIDA_BackEnd</name>
-	<description>Demo project for Spring Boot</description>
+	<description>
+            Servicios para que los clientes de Angular (Administrador) y Flutter (Ciudadanos y Brigadistas)
+            puedan consumir para el correcto funcionamiento del Sistema.
+        </description>
                 
 	<properties>
 		<java.version>1.8</java.version>
@@ -80,16 +83,26 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.0</version>
 		</dependency>
+                <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+                <dependency>
+                    <groupId>javax.validation</groupId>
+                    <artifactId>validation-api</artifactId>
+                    <version>2.0.1.Final</version>
+                </dependency>
                 
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+            <plugins>
+                    <plugin>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+            </plugins>
+            
+            <filters>
+                <filter>./src/main/resources/application.properties</filter>
+            </filters>
+	</build>        
         
 </project>

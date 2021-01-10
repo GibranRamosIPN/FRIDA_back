@@ -8,7 +8,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class }, scanBasePackages = {"com.escom.FRIDA_BackEnd", "com.escom.FRIDA_BackEnd.Entity",
-"com.escom.FRIDA_BackEnd.Repository", "com.escom.FRIDA_BackEnd.Controller", "com.escom.FRIDA_BackEnd.Service"})
+"com.escom.FRIDA_BackEnd.Repository", "com.escom.FRIDA_BackEnd.Controller", "com.escom.FRIDA_BackEnd.Service",
+"com.escom.FRIDA_BackEnd.Security", "com.escom.FRIDA_BackEnd.Security.JWT", "com.escom.FRIDA_BackEnd.DTO",
+"com.escom.FRIDA_BackEnd.enums"})
 public class FridaBackEndApplication {
 
 	public static void main(String[] args) {

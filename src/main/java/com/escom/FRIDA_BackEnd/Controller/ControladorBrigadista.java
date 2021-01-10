@@ -5,11 +5,9 @@ package com.escom.FRIDA_BackEnd.Controller;
 import com.escom.FRIDA_BackEnd.Entity.Brigadista;
 import com.escom.FRIDA_BackEnd.Service.BrigadistaService;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-//@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600)
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 //@RequestMapping({"/lobby/brigadistas"})

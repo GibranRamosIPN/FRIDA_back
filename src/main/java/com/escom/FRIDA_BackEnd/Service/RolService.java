@@ -7,7 +7,9 @@ import com.escom.FRIDA_BackEnd.Entity.Rol;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RolService {
     @Autowired
     RolRepository rolRepository;
