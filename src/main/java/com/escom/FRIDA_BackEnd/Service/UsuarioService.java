@@ -2,6 +2,7 @@ package com.escom.FRIDA_BackEnd.Service;
 
 import com.escom.FRIDA_BackEnd.Repository.UsuarioRepository;
 import com.escom.FRIDA_BackEnd.Entity.Usuario;
+import java.util.List;
 
 import java.util.Optional;
 
@@ -20,8 +21,16 @@ public class UsuarioService {
         return usuarioRepository.findByNombreUsuario(nu);
     }
 
+    public Optional<Usuario> getById(Long id) {
+        return usuarioRepository.findById(id);
+    }
+    
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
+    }
+        
     public boolean existePorNombre(String nu){
-        return usuarioRepository.existsByNombreUsuario(nu);
+        return usuarioRepository.existsByNombre(nu);
     }
 
     public  boolean existePorEmail(String email){
@@ -30,5 +39,9 @@ public class UsuarioService {
 
     public void guardar(Usuario usuario){
         usuarioRepository.save(usuario);
+    }
+    
+    public void eliminar(Long id) {
+        usuarioRepository.deleteById(id);
     }
 }

@@ -10,16 +10,6 @@ public class Brigadista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idBrigadista;
     @Column
-    private String nombre;    
-    @Column
-    private String apellidoPaterno;    
-    @Column
-    private String apellidoMaterno;  
-    @Column
-    private String usuario;
-    @Column
-    private String psswrd;
-    @Column
     private String ultima_calle_numero;    
     @Column
     private String ultima_colonia;    
@@ -31,53 +21,19 @@ public class Brigadista {
     private String ultima_estado;  
     @Column
     private Integer idCasoAsignado;
+    @Column
+    private Long idUsuario;
 
+    public Brigadista(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
     public Integer getIdBrigadista() {
         return idBrigadista;
     }
 
     public void setIdBrigadista(Integer idBrigadista) {
         this.idBrigadista = idBrigadista;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getPsswrd() {
-        return psswrd;
-    }
-
-    public void setPsswrd(String psswrd) {
-        this.psswrd = psswrd;
     }
 
     public String getUltima_calle_numero() {
@@ -128,6 +84,12 @@ public class Brigadista {
         this.idCasoAsignado = idCasoAsignado;
     }
 
-    
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
         
 }
