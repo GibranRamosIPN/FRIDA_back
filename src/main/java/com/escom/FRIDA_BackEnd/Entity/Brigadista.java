@@ -24,6 +24,9 @@ public class Brigadista {
     @Column
     private Long idUsuario;
 
+    public Brigadista() {
+    }
+    
     public Brigadista(Long idUsuario) {
         this.idUsuario = idUsuario;
     }

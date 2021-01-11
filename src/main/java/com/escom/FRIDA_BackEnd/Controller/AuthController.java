@@ -17,6 +17,7 @@ import com.escom.FRIDA_BackEnd.Service.RolService;
 import com.escom.FRIDA_BackEnd.Service.UsuarioRolService;
 import com.escom.FRIDA_BackEnd.Service.UsuarioService;
 import com.escom.FRIDA_BackEnd.enums.RolNombre;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +45,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods= {RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT, RequestMethod.DELETE})
 public class AuthController {
 
     @Autowired
@@ -177,24 +178,19 @@ public class AuthController {
         return usuarioService.listar();
     }
     
-    @GetMapping(path = "/listar/usuarios")
-    public List<UsuarioRol> listarBrigadistas() {
-        List<Usuario> brigadistas = null;
+    @GetMapping(path = "/listar/brigadistas")
+    public List<Usuario> listarBrigadistas() {
+        List<Usuario> brigadistas = new ArrayList<Usuario>();
         List<UsuarioRol> usuariosBrigadistas;
         
         usuariosBrigadistas = usuarioRolService.getIdUsuariosBrigadistas(new Long(3));
         
-        Long idUsuario = new Long(0);
         for (UsuarioRol u: usuariosBrigadistas) {
-            System.out.println("Usuario: " + u.getUsuarioId());
-            brigadistas.add(usuarioService.getById(idUsuario).get());
+            //System.out.println("Usuario: " + u.getUsuarioId());
+            brigadistas.add(usuarioService.getById(u.getUsuarioId()).get());
         }
         
-        /*for (Usuario u: brigadistas) {
-            System.out.println("Brigadista: " + u.getNombre());
-        }*/
-        
-        return usuariosBrigadistas;
+        return brigadistas;
     }
     
     @PutMapping(path = "actualizar/usuario/{id}")
@@ -210,7 +206,7 @@ public class AuthController {
     }
     
     @DeleteMapping(path = "/usuarios/{id}")
-    public ResponseEntity<?> eliminarBrigadista(@PathVariable("id") Long id) {        
+    public ResponseEntity<?> eliminarUsuarioBrigadista(@PathVariable("id") Long id) {        
         usuarioService.eliminar(id);
         Brigadista brig = new Brigadista(id);
         brigadistaService.eliminarBrigadista(brig.getIdBrigadista());
