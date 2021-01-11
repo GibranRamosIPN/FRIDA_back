@@ -9,13 +9,7 @@ public class Ciudadano {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCiudadano;    
-    @Column
-    private String nombre;    
-    @Column
-    private String apellido_paterno;    
-    @Column
-    private String apellido_materno;    
+    private Integer idCiudadano;
     @Column
     private Date fecha_nacimiento;    
     @Column
@@ -27,14 +21,16 @@ public class Ciudadano {
     @Column
     private String alcaldia_municipio;    
     @Column
-    private String estado;    
+    private String estado;
     @Column
-    private String email;    
+    private Integer idRecomendacion;
     @Column
-    private String psswrd;    
-    @Column
-    private Integer id_recomendacion;
+    private Long idUsuario;
 
+    public Ciudadano(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
     public Integer getId_ciudadano() {
         return idCiudadano;
     }
@@ -42,31 +38,7 @@ public class Ciudadano {
     public void setId_ciudadano(Integer id_ciudadano) {
         this.idCiudadano = id_ciudadano;
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido_paterno() {
-        return apellido_paterno;
-    }
-
-    public void setApellido_paterno(String apellido_paterno) {
-        this.apellido_paterno = apellido_paterno;
-    }
-
-    public String getApellido_materno() {
-        return apellido_materno;
-    }
-
-    public void setApellido_materno(String apellido_materno) {
-        this.apellido_materno = apellido_materno;
-    }
-
+    
     public Date getFecha_nacimiento() {
         return fecha_nacimiento;
     }
@@ -115,28 +87,20 @@ public class Ciudadano {
         this.estado = estado;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getIdRecomendacion() {
+        return idRecomendacion;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIdRecomendacion(Integer idRecomendacion) {
+        this.idRecomendacion = idRecomendacion;
+    }
+    
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public String getPsswrd() {
-        return psswrd;
-    }
-
-    public void setPsswrd(String psswrd) {
-        this.psswrd = psswrd;
-    }
-
-    public Integer getId_recomendacion() {
-        return id_recomendacion;
-    }
-
-    public void setId_recomendacion(Integer id_recomendacion) {
-        this.id_recomendacion = id_recomendacion;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
 }

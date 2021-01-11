@@ -5,11 +5,14 @@ import com.escom.FRIDA_BackEnd.DTO.LoginUsuario;
 import com.escom.FRIDA_BackEnd.DTO.Mensaje;
 import com.escom.FRIDA_BackEnd.DTO.NuevoUsuario;
 import com.escom.FRIDA_BackEnd.Entity.Brigadista;
+import com.escom.FRIDA_BackEnd.Entity.Ciudadano;
+import com.escom.FRIDA_BackEnd.Entity.CiudadanoUsuario;
 import com.escom.FRIDA_BackEnd.Entity.Rol;
 import com.escom.FRIDA_BackEnd.Entity.Usuario;
 import com.escom.FRIDA_BackEnd.Entity.UsuarioRol;
 import com.escom.FRIDA_BackEnd.Security.JWT.JwtProvider;
 import com.escom.FRIDA_BackEnd.Service.BrigadistaService;
+import com.escom.FRIDA_BackEnd.Service.CiudadanoService;
 import com.escom.FRIDA_BackEnd.Service.RolService;
 import com.escom.FRIDA_BackEnd.Service.UsuarioRolService;
 import com.escom.FRIDA_BackEnd.Service.UsuarioService;
@@ -58,6 +61,9 @@ public class AuthController {
     
     @Autowired
     UsuarioRolService usuarioRolService;
+    
+    @Autowired
+    CiudadanoService ciudadanoService;
 
     @Autowired
     RolService rolService;
@@ -67,6 +73,7 @@ public class AuthController {
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
+        boolean isBrigadista = false;
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("Campos vacíos o email inválido"), HttpStatus.ACCEPTED.BAD_REQUEST);
         if(usuarioService.existePorNombre(nuevoUsuario.getNombreUsuario()))
@@ -88,21 +95,62 @@ public class AuthController {
                 case "brigadista":
                     Rol rolBrigadista = rolService.getByRolNombre(RolNombre.ROLE_BRIGADISTA).get();
                     roles.add(rolBrigadista);
+                    isBrigadista = true;
                     break;
                 default:
-                    Rol rolUser = rolService.getByRolNombre(RolNombre.ROLE_USER).get();
+                    Rol rolUser = rolService.getByRolNombre(RolNombre.ROLE_CIUDADANO).get();
                     roles.add(rolUser);
             }
         }
         usuario.setRoles(roles);
         usuarioService.guardar(usuario);
         
-        // Insertando ahora en tabla brigadistas
-        Usuario user = usuarioService.getByNombreUsuario(usuario.getNombreUsuario()).get();
-        Brigadista brig = new Brigadista(user.getId());
-        brigadistaService.crearBrigadista(brig);
-        
+        // Insertando ahora en tabla brigadistas        
+        if (isBrigadista) {
+            Usuario user = usuarioService.getByNombreUsuario(usuario.getNombreUsuario()).get();
+            Brigadista brig = new Brigadista(user.getId());
+            brigadistaService.crearBrigadista(brig);
+        }
+            
         return new ResponseEntity(new Mensaje("El usuario ha sido guardado"), HttpStatus.CREATED);
+    }
+    
+    @PostMapping("/nuevo/ciudadano") 
+    public ResponseEntity<?> nuevoCiudadano(@Valid @RequestBody CiudadanoUsuario ciud, BindingResult bindingResult) {
+        
+        if(bindingResult.hasErrors())
+            return new ResponseEntity(new Mensaje("Campos vacíos o email inválido"), HttpStatus.ACCEPTED.BAD_REQUEST);
+        if(usuarioService.existePorNombre(ciud.getEmail()))
+            return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
+        if(usuarioService.existePorEmail(ciud.getEmail()))
+            return new ResponseEntity(new Mensaje("Ese email ya existe"), HttpStatus.BAD_REQUEST);
+        Usuario usuario =
+                new Usuario(ciud.getNombre(), ciud.getApellido_paterno(), ciud.getApellido_materno(),
+                        ciud.getEmail(), ciud.getEmail(),
+                        passwordEncoder.encode(ciud.getPassword()));
+        
+        Set<Rol> roles = new HashSet<>();
+        Rol rolUser = rolService.getByRolNombre(RolNombre.ROLE_CIUDADANO).get();
+        roles.add(rolUser);
+        
+        usuario.setRoles(roles);
+        usuarioService.guardar(usuario);
+        
+        // Obteniendo usuario creado para ese ciudadano
+        Usuario user = usuarioService.getByNombreUsuario(usuario.getNombreUsuario()).get();        
+        Ciudadano c = new Ciudadano(user.getId());
+        
+        c.setFecha_nacimiento(ciud.getFecha_nacimiento());
+        c.setCalle_numero(ciud.getCalle_numero());
+        c.setColonia(ciud.getColonia());
+        c.setCp(ciud.getCp());
+        c.setAlcaldia_municipio(ciud.getAlcaldia_municipio());
+        c.setEstado(ciud.getEstado());
+        c.setIdRecomendacion(ciud.getId_recomendacion());
+        
+        ciudadanoService.crearCiudadano(c);
+        
+        return new ResponseEntity(new Mensaje("El ciudadano ha sido guardado"), HttpStatus.CREATED);        
     }
 
     @PostMapping("/login")
@@ -131,8 +179,21 @@ public class AuthController {
     
     @GetMapping(path = "/listar/usuarios")
     public List<UsuarioRol> listarBrigadistas() {
+        List<Usuario> brigadistas = null;
         List<UsuarioRol> usuariosBrigadistas;
+        
         usuariosBrigadistas = usuarioRolService.getIdUsuariosBrigadistas(new Long(3));
+        
+        Long idUsuario = new Long(0);
+        for (UsuarioRol u: usuariosBrigadistas) {
+            System.out.println("Usuario: " + u.getUsuarioId());
+            brigadistas.add(usuarioService.getById(idUsuario).get());
+        }
+        
+        /*for (Usuario u: brigadistas) {
+            System.out.println("Brigadista: " + u.getNombre());
+        }*/
+        
         return usuariosBrigadistas;
     }
     
