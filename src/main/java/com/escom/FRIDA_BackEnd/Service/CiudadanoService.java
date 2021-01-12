@@ -11,4 +11,5 @@ public interface CiudadanoService {
     Ciudadano eliminarCiudadano (Integer idCiudadano);
     List<Ciudadano> listarCiudadanos();
     Ciudadano listarId(Integer idCiudadano);
+    Ciudadano getByIdUsuario(Long idUsuario);
 }

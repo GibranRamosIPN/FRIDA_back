@@ -1,17 +1,15 @@
 package com.escom.FRIDA_BackEnd.Entity;
 
-import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-public class Ciudadano {
-    
+@Table(name = "centro_acopio")
+public class CentroDeAcopio {
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCiudadano;
+    private Integer idCentro;
     @Column
-    private Date fecha_nacimiento;    
+    private String nombre;
     @Column
     private String calle_numero;    
     @Column
@@ -22,32 +20,24 @@ public class Ciudadano {
     private String alcaldia_municipio;    
     @Column
     private String estado;
-    @Column
-    private Integer idRecomendacion;
-    @Column
-    private Long idUsuario;
 
-    public Ciudadano() {
-    }
-    
-    public Ciudadano(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-    
-    public Integer getId_ciudadano() {
-        return idCiudadano;
+    public CentroDeAcopio() {
     }
 
-    public void setId_ciudadano(Integer id_ciudadano) {
-        this.idCiudadano = id_ciudadano;
-    }
-    
-    public Date getFecha_nacimiento() {
-        return fecha_nacimiento;
+    public Integer getIdCentro() {
+        return idCentro;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
-        this.fecha_nacimiento = fecha_nacimiento;
+    public void setIdCentro(Integer idCentro) {
+        this.idCentro = idCentro;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getCalle_numero() {
@@ -89,21 +79,5 @@ public class Ciudadano {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public Integer getIdRecomendacion() {
-        return idRecomendacion;
-    }
-
-    public void setIdRecomendacion(Integer idRecomendacion) {
-        this.idRecomendacion = idRecomendacion;
-    }
     
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
 }

@@ -193,8 +193,8 @@ public class AuthController {
         return brigadistas;
     }
     
-    @PutMapping(path = "actualizar/usuario/{id}")
-    public ResponseEntity<?> actualizarUsuario(@RequestBody Usuario usuario, @PathVariable("id") Long id) {
+    @PutMapping(path = "/actualizar/usuario/{id}")
+    public ResponseEntity<?> actualizarUsuarioBrigadista(@RequestBody Usuario usuario, @PathVariable("id") Long id) {
         Set<Rol> roles = new HashSet<>();
         usuario.setId(id);
         Rol rolBrigadista = rolService.getByRolNombre(RolNombre.ROLE_BRIGADISTA).get();
@@ -203,6 +203,38 @@ public class AuthController {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuarioService.guardar(usuario);
         return new ResponseEntity(new Mensaje("El usuario ha sido actualizado correctamente"), HttpStatus.OK);
+    }
+    
+    @PutMapping(path = "/actualizar/uciudadano/{id}")
+    public ResponseEntity<?> actualizarUsuarioCiudadano(@RequestBody CiudadanoUsuario ciudadano, @PathVariable("id") Long id) {
+        Ciudadano c = ciudadanoService.getByIdUsuario(id);
+        
+        c.setFecha_nacimiento(ciudadano.getFecha_nacimiento());
+        c.setCalle_numero(ciudadano.getCalle_numero());
+        c.setColonia(ciudadano.getColonia());
+        c.setCp(ciudadano.getCp());
+        c.setAlcaldia_municipio(ciudadano.getAlcaldia_municipio());
+        c.setEstado(ciudadano.getEstado());  
+        c.setIdRecomendacion(ciudadano.getId_recomendacion());
+        ciudadanoService.actualizarCiudadano(c);
+        
+        Usuario usuario = new Usuario();
+        
+        Set<Rol> roles = new HashSet<>();
+        usuario.setId(c.getIdUsuario());
+        usuario.setNombre(ciudadano.getNombre());
+        usuario.setApellido_paterno(ciudadano.getApellido_paterno());
+        usuario.setApellido_materno(ciudadano.getApellido_materno());
+        usuario.setEmail(ciudadano.getEmail());
+        usuario.setNombreUsuario(ciudadano.getEmail());
+        usuario.setPassword(passwordEncoder.encode(ciudadano.getPassword()));
+        Rol rolCiudadano = rolService.getByRolNombre(RolNombre.ROLE_CIUDADANO).get();
+        roles.add(rolCiudadano);
+        usuario.setRoles(roles);
+        
+        usuarioService.guardar(usuario);
+        
+        return new ResponseEntity(new Mensaje("El ciudadano ha sido actualizado correctamente"), HttpStatus.OK);
     }
     
     @DeleteMapping(path = "/usuarios/{id}")

@@ -7,6 +7,7 @@ import org.springframework.data.repository.Repository;
 public interface CiudadanoRepository extends Repository<Ciudadano, Integer> {
     List<Ciudadano>findAll();
     Ciudadano findByIdCiudadano(Integer idCiudadano);
+    Ciudadano findByIdUsuario(Long idUsuario);
     Ciudadano save(Ciudadano b);
     Ciudadano delete(Ciudadano b);
 }

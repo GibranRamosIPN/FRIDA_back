@@ -41,4 +41,9 @@ public class CiudadanoServiceImplement implements CiudadanoService{
     public List<Ciudadano> listarCiudadanos() {
         return repositorio.findAll();
     }
+
+    @Override
+    public Ciudadano getByIdUsuario(Long idUsuario) {
+        return repositorio.findByIdUsuario(idUsuario);
+    }
 }
