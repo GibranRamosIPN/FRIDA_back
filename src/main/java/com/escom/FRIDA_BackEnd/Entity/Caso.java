@@ -9,31 +9,34 @@ public class Caso {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCaso;    
+    private Integer idCaso;
     @Column
-    private String nombre;    
+    private Integer prioridad;
     @Column
-    private String tipoDeDanio;    
+    private String tipo_danio;    
     @Column
-    private String calleYnumero;
+    private String calle_numero;
     @Column
     private String colonia;    
     @Column
     private String cp;    
     @Column
-    private String alcaldiaOmunicipio;    
+    private String alcaldia_municipio;    
     @Column
     private String estado;    
     @Column
-    private Integer statusCaso;    
+    private Integer status_caso;    
     @Column
-    private Date fechaReportado;    
+    private Date fecha_reportado;    
     @Column
-    private Date fechaEvaluado;    
+    private Date fecha_evaluado;    
     @Column
     private Integer idCuestionario;    
     @Column
     private Integer idCiudadano;
+
+    public Caso() {
+    }
 
     public Integer getIdCaso() {
         return idCaso;
@@ -43,28 +46,28 @@ public class Caso {
         this.idCaso = idCaso;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Integer getPrioridad() {
+        return prioridad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPrioridad(Integer prioridad) {
+        this.prioridad = prioridad;
     }
 
-    public String getTipoDeDanio() {
-        return tipoDeDanio;
+    public String getTipo_danio() {
+        return tipo_danio;
     }
 
-    public void setTipoDeDanio(String tipoDeDanio) {
-        this.tipoDeDanio = tipoDeDanio;
+    public void setTipo_danio(String tipo_danio) {
+        this.tipo_danio = tipo_danio;
     }
 
-    public String getCalleYnumero() {
-        return calleYnumero;
+    public String getCalle_numero() {
+        return calle_numero;
     }
 
-    public void setCalleYnumero(String calleYnumero) {
-        this.calleYnumero = calleYnumero;
+    public void setCalle_numero(String calle_numero) {
+        this.calle_numero = calle_numero;
     }
 
     public String getColonia() {
@@ -83,12 +86,12 @@ public class Caso {
         this.cp = cp;
     }
 
-    public String getAlcaldiaOmunicipio() {
-        return alcaldiaOmunicipio;
+    public String getAlcaldia_municipio() {
+        return alcaldia_municipio;
     }
 
-    public void setAlcaldiaOmunicipio(String alcaldiaOmunicipio) {
-        this.alcaldiaOmunicipio = alcaldiaOmunicipio;
+    public void setAlcaldia_municipio(String alcaldia_municipio) {
+        this.alcaldia_municipio = alcaldia_municipio;
     }
 
     public String getEstado() {
@@ -99,28 +102,28 @@ public class Caso {
         this.estado = estado;
     }
 
-    public Integer getStatusCaso() {
-        return statusCaso;
+    public Integer getStatus_caso() {
+        return status_caso;
     }
 
-    public void setStatusCaso(Integer statusCaso) {
-        this.statusCaso = statusCaso;
+    public void setStatus_caso(Integer status_caso) {
+        this.status_caso = status_caso;
     }
 
-    public Date getFechaReportado() {
-        return fechaReportado;
+    public Date getFecha_reportado() {
+        return fecha_reportado;
     }
 
-    public void setFechaReportado(Date fechaReportado) {
-        this.fechaReportado = fechaReportado;
+    public void setFecha_reportado(Date fecha_reportado) {
+        this.fecha_reportado = fecha_reportado;
     }
 
-    public Date getFechaEvaluado() {
-        return fechaEvaluado;
+    public Date getFecha_evaluado() {
+        return fecha_evaluado;
     }
 
-    public void setFechaEvaluado(Date fechaEvaluado) {
-        this.fechaEvaluado = fechaEvaluado;
+    public void setFecha_evaluado(Date fecha_evaluado) {
+        this.fecha_evaluado = fecha_evaluado;
     }
 
     public Integer getIdCuestionario() {
@@ -138,5 +141,6 @@ public class Caso {
     public void setIdCiudadano(Integer idCiudadano) {
         this.idCiudadano = idCiudadano;
     }
+
     
 }

@@ -5,6 +5,10 @@ import java.util.List;
 
 public interface CasoService {
     
+    Caso crearCaso(Caso caso);
+    Caso obtenerCasoXId(Integer idCaso);
+    Caso actualizarStatusCaso(Caso caso);
     List<Caso>listarCasos();
+    Caso eliminarCaso(Integer idCaso);
         
 }
