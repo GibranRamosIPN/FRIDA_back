@@ -26,10 +26,10 @@ public class Caso {
     private String estado;    
     @Column
     private Integer status_caso;    
-    @Column
-    private Date fecha_reportado;    
-    @Column
-    private Date fecha_evaluado;    
+    @Column(name="fecha_reportado")
+    private String fecha_reportado;    
+    @Column(name="fecha_evaluado")
+    private String fecha_evaluado;
     @Column
     private Integer idCuestionario;    
     @Column
@@ -110,19 +110,19 @@ public class Caso {
         this.status_caso = status_caso;
     }
 
-    public Date getFecha_reportado() {
+    public String getFecha_reportado() {
         return fecha_reportado;
     }
 
-    public void setFecha_reportado(Date fecha_reportado) {
+    public void setFecha_reportado(String fecha_reportado) {
         this.fecha_reportado = fecha_reportado;
     }
 
-    public Date getFecha_evaluado() {
+    public String getFecha_evaluado() {
         return fecha_evaluado;
     }
 
-    public void setFecha_evaluado(Date fecha_evaluado) {
+    public void setFecha_evaluado(String fecha_evaluado) {
         this.fecha_evaluado = fecha_evaluado;
     }
 

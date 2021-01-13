@@ -15,10 +15,12 @@ public class Brigadista {
     private String ultima_colonia;    
     @Column
     private String ultima_cp;    
-    @Column
-    private String ultima_alcaldia_municipio;    
+    @Column(name = "ultima_alcaldia_municipio")
+    private String ultimaAlcaldiaMunicipio;    
     @Column
     private String ultima_estado;  
+    @Column
+    private String estado;
     @Column
     private Integer idCasoAsignado;
     @Column
@@ -63,14 +65,14 @@ public class Brigadista {
         this.ultima_cp = ultima_cp;
     }
 
-    public String getUltima_alcaldia_municipio() {
-        return ultima_alcaldia_municipio;
+    public String getUltimaAlcaldiaMunicipio() {
+        return ultimaAlcaldiaMunicipio;
     }
 
-    public void setUltima_alcaldia_municipio(String ultima_alcaldia_municipio) {
-        this.ultima_alcaldia_municipio = ultima_alcaldia_municipio;
+    public void setUltimaAlcaldiaMunicipio(String ultimaAlcaldiaMunicipio) {
+        this.ultimaAlcaldiaMunicipio = ultimaAlcaldiaMunicipio;
     }
-
+    
     public String getUltima_estado() {
         return ultima_estado;
     }
@@ -79,6 +81,14 @@ public class Brigadista {
         this.ultima_estado = ultima_estado;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     public Integer getIdCasoAsignado() {
         return idCasoAsignado;
     }

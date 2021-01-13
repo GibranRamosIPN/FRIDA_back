@@ -12,6 +12,7 @@ public interface BrigadistaService {
     Brigadista eliminarBrigadista(Integer idBrigadista); 
     List<Brigadista>listarBrigadistas();
     Brigadista listarId(Integer idBrigadista);
-    List<Brigadista>listarXalcaldia(String alcaldia);        
+    List<Brigadista>listarXalcaldia(String alcaldia);   
+    Brigadista getBrigadistaByIdUsuario(Long idUsuario);
     
 }

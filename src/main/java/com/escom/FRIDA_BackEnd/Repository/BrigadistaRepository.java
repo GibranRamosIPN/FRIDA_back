@@ -9,4 +9,6 @@ public interface BrigadistaRepository extends Repository<Brigadista, Integer> {
     Brigadista findByIdBrigadista(Integer idBrigadista);
     Brigadista save(Brigadista b);
     Brigadista delete(Brigadista b);
+    Brigadista findByIdUsuario(Long idUsuario);
+    List<Brigadista> findByUltimaAlcaldiaMunicipio(String alcaldia_municipio);
 }

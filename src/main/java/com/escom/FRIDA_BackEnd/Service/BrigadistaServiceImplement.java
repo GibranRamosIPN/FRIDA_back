@@ -43,6 +43,11 @@ public class BrigadistaServiceImplement implements BrigadistaService {
 
     @Override
     public List<Brigadista> listarXalcaldia(String alcaldia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return repositorio.findByUltimaAlcaldiaMunicipio(alcaldia);
     }    
+
+    @Override
+    public Brigadista getBrigadistaByIdUsuario(Long idUsuario) {
+        return repositorio.findByIdUsuario(idUsuario);
+    }
 }
