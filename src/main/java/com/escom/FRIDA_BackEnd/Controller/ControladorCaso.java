@@ -1,9 +1,15 @@
 package com.escom.FRIDA_BackEnd.Controller;
 
+import com.escom.FRIDA_BackEnd.DTO.Mensaje;
 import com.escom.FRIDA_BackEnd.Entity.Caso;
+import com.escom.FRIDA_BackEnd.Entity.Mapas;
+import com.escom.FRIDA_BackEnd.Entity.MapasCaso;
 import com.escom.FRIDA_BackEnd.Service.CasoService;
+import com.escom.FRIDA_BackEnd.Service.MapasService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +27,25 @@ public class ControladorCaso {
     @Autowired
     CasoService casoService;
     
-    @PostMapping(path = "/crearCaso") 
-    public Caso crearCaso(@RequestBody Caso caso) {
-        return casoService.crearCaso(caso);
+    @Autowired
+    MapasService mapasService;
+    
+    @PostMapping("/nuevo/caso")
+    public ResponseEntity<?> crearMapasCaso(@RequestBody MapasCaso mapasCaso){
+        Caso caso = new Caso(mapasCaso.getPrioridad(),mapasCaso.getTipo_danio(),
+        mapasCaso.getCalle_numero(),mapasCaso.getColonia(),mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio(),
+        mapasCaso.getEstado(),mapasCaso.getStatus_caso(),mapasCaso.getFecha_reportado(),mapasCaso.getFecha_evaluado(),
+        mapasCaso.getIdCuestionario(),mapasCaso.getIdCiudadano());
+        
+        casoService.crearCaso(caso);
+        
+        //Caso caso2 = casoService.obtenerCasoXId();
+        
+        //Mapas mapas = new Mapas(mapasCaso.getLatitud(), mapasCaso.getLongitud(), 1);
+        
+        //mapasService.crearMapas(mapas);
+            
+        return new ResponseEntity(new Mensaje("El caso ha sido guardado"), HttpStatus.CREATED);
     }
     
     @GetMapping(path = "/listar/casos")
@@ -46,5 +68,5 @@ public class ControladorCaso {
     @DeleteMapping(path = "/eliminar/caso/{id}")
     public Caso eliminarCaso(@PathVariable("id") Integer id) {
         return casoService.eliminarCaso(id);
-    }
+    } 
 }

@@ -153,6 +153,29 @@ public class AuthController {
         
         return new ResponseEntity(new Mensaje("El ciudadano ha sido guardado"), HttpStatus.CREATED);        
     }
+    
+    @GetMapping(path = "/usuarios/nombreUsuario/{nombreUsuario}")
+    public ResponseEntity<CiudadanoUsuario> listarNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
+        Optional<Usuario> u =  usuarioService.getByNombreUsuario(nombreUsuario);
+        Ciudadano c = ciudadanoService.getByIdUsuario(u.get().getId());
+        CiudadanoUsuario cu = new CiudadanoUsuario();
+        
+        cu.setNombre(u.get().getNombre());
+        cu.setApellido_paterno(u.get().getApellido_paterno());
+        cu.setApellido_materno(u.get().getApellido_materno());
+        cu.setEmail(u.get().getEmail());
+        cu.setIdCiudadano(c.getId_ciudadano());
+        cu.setFecha_nacimiento(c.getFecha_nacimiento());
+        cu.setCalle_numero(c.getCalle_numero());
+        cu.setColonia(c.getColonia());
+        cu.setCp(c.getCp());
+        cu.setAlcaldia_municipio(c.getAlcaldia_municipio());
+        cu.setEstado(c.getEstado());
+        cu.setIdUsuario(c.getIdUsuario());
+        
+        return new ResponseEntity<CiudadanoUsuario>(cu,HttpStatus.OK);
+    }
+    
 
     @PostMapping("/login")
     public ResponseEntity<JwtDTO> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
@@ -172,7 +195,7 @@ public class AuthController {
     public Optional<Usuario> listarId(@PathVariable("id") Long id) {
         return usuarioService.getById(id);
     }
-    
+        
     @GetMapping(path = "/usuarios")
     public List<Usuario> listar() {
         return usuarioService.listar();
@@ -214,8 +237,7 @@ public class AuthController {
         c.setColonia(ciudadano.getColonia());
         c.setCp(ciudadano.getCp());
         c.setAlcaldia_municipio(ciudadano.getAlcaldia_municipio());
-        c.setEstado(ciudadano.getEstado());  
-        c.setIdRecomendacion(ciudadano.getId_recomendacion());
+        c.setEstado(ciudadano.getEstado());
         ciudadanoService.actualizarCiudadano(c);
         
         Usuario usuario = new Usuario();

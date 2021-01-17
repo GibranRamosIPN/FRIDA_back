@@ -1,13 +1,10 @@
 package com.escom.FRIDA_BackEnd.Entity;
 
-import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-public class Caso {
-    
+public class MapasCaso {
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCaso;
     @Column
@@ -32,28 +29,6 @@ public class Caso {
     private String fecha_evaluado;
     @Column
     private Integer idCuestionario;    
-    @Column
-    private Integer idCiudadano;
-
-    public Caso() {
-    }
-
-    public Caso(Integer prioridad, String tipo_danio, String calle_numero, String colonia, String cp, String alcaldia_municipio,
-            String estado, Integer status_caso, String fecha_reportado, String fecha_evaluado, Integer idCuestionario, Integer idCiudadano) {
-        this.prioridad = prioridad;
-        this.tipo_danio = tipo_danio;
-        this.calle_numero = calle_numero;
-        this.colonia = colonia;
-        this.cp = cp;
-        this.alcaldia_municipio = alcaldia_municipio;
-        this.estado = estado;
-        this.status_caso = status_caso;
-        this.fecha_reportado = fecha_reportado;
-        this.fecha_evaluado = fecha_evaluado;
-        this.idCuestionario = idCuestionario;
-        this.idCiudadano = idCiudadano;
-        
-    }
 
     public Integer getIdCaso() {
         return idCaso;
@@ -159,5 +134,25 @@ public class Caso {
         this.idCiudadano = idCiudadano;
     }
 
-    
+    public String getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+    @Column
+    private Integer idCiudadano;
+    @Column
+    private String latitud;
+    @Column
+    private String longitud;
 }
