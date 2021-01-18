@@ -14,8 +14,8 @@ public class MapasCaso {
     private String fecha_evaluado;
     private Integer idCuestionario;
     private Integer idCiudadano;
-    private String latitud;
-    private String longitud;
+    private String lat;
+    private String lng;
 
     public Integer getIdCaso() {
         return idCaso;
@@ -121,19 +121,21 @@ public class MapasCaso {
         this.idCiudadano = idCiudadano;
     }
 
-    public String getLatitud() {
-        return latitud;
+    public String getLat() {
+        return lat;
     }
 
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
-    public String getLongitud() {
-        return longitud;
+    public String getLng() {
+        return lng;
     }
 
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+    public void setLng(String lng) {
+        this.lng = lng;
     }
+
+    
 }

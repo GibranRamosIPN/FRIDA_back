@@ -9,10 +9,10 @@ public class Mapas {
     private Integer idMapas;
     
     @Column
-    private String latitud;
+    private String lat;
     
     @Column
-    private String longitud;
+    private String lng;
     
     @Column
     private Integer idCaso;
@@ -21,8 +21,8 @@ public class Mapas {
     
     public Mapas(Integer idMapas, String latitud, String longitud, Integer idCaso) {
         this.idMapas = idMapas;
-        this.latitud = latitud;
-        this.longitud = longitud;
+        this.lat = latitud;
+        this.lng = longitud;
         this.idCaso = idCaso;  
     }
     
@@ -34,20 +34,20 @@ public class Mapas {
         this.idMapas = idMapas;
     }
 
-    public String getLatitud() {
-        return latitud;
+    public String getLat() {
+        return lat;
     }
 
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
+    public void setLat(String lat) {
+        this.lat = lat;
     }
 
-    public String getLongitud() {
-        return longitud;
+    public String getLng() {
+        return lng;
     }
 
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
     public Integer getIdCaso() {

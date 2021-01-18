@@ -41,12 +41,20 @@ public class ControladorCaso {
         
         List<Caso> caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
                 mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio());
-        
+                
         if(caso2 != null) {            
-            System.out.println("ID DEL CASO: " + caso2.get(0).getIdCaso());
+            // System.out.println("ID DEL CASO: " + caso2.get(0).getIdCaso());
             Mapas m = mapasService.obtenerMapasXIdCaso(caso2.get(0).getIdCaso());       // Aux para obtener idMapas
-            Mapas mapas = new Mapas(m.getIdMapas(), mapasCaso.getLatitud(), mapasCaso.getLongitud(), caso2.get(0).getIdCaso());
-            mapasService.actualizarMapas(mapas);
+            if (m != null) {    // Significa que ya hay un registro y solo se actualiza
+                Mapas mapas = new Mapas(m.getIdMapas(), mapasCaso.getLat(), mapasCaso.getLng(), caso2.get(0).getIdCaso());
+                mapasService.actualizarMapas(mapas);
+            } else {            // Se crea un nuevo registro
+                Mapas mapas = new Mapas();                
+                mapas.setLat(mapasCaso.getLat());
+                mapas.setLng(mapasCaso.getLng());
+                mapas.setIdCaso(caso2.get(0).getIdCaso());
+                mapasService.actualizarMapas(mapas);
+            }
         }        
             
         return new ResponseEntity(new Mensaje("El caso ha sido guardado"), HttpStatus.CREATED);
