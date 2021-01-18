@@ -18,8 +18,8 @@ public class MapasServiceImplement implements MapasService {
     }
 
     @Override
-    public Mapas obtenerMapasXId(Integer idMapas) {
-        return repositorio.findByIdCaso(idMapas);
+    public Mapas obtenerMapasXIdCaso(Integer idCaso) {
+        return repositorio.findByIdCaso(idCaso);
     }
 
     @Override
@@ -34,6 +34,16 @@ public class MapasServiceImplement implements MapasService {
             repositorio.delete(mapas);
         }
         return mapas;
+    }
+
+    @Override
+    public Mapas obtenerMapasXIdMapas(Integer idMapas) {
+        return repositorio.findByIdCaso(idMapas);
+    }
+
+    @Override
+    public Mapas actualizarMapas(Mapas mapas) {
+        return repositorio.save(mapas);
     }
     
 }

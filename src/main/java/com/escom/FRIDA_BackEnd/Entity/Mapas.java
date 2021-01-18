@@ -15,14 +15,15 @@ public class Mapas {
     private String longitud;
     
     @Column
-    private Integer id_caso;
+    private Integer idCaso;
 
     public Mapas(){}
     
-    public Mapas(String latitud, String longitud, Integer idCaso) {
+    public Mapas(Integer idMapas, String latitud, String longitud, Integer idCaso) {
+        this.idMapas = idMapas;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.id_caso = id_caso;  
+        this.idCaso = idCaso;  
     }
     
     public Integer getIdMapas() {
@@ -50,10 +51,10 @@ public class Mapas {
     }
 
     public Integer getIdCaso() {
-        return id_caso;
+        return idCaso;
     }
 
     public void setIdCaso(Integer idCaso) {
-        this.id_caso = id_caso;
+        this.idCaso = idCaso;
     }
 }

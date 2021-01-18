@@ -10,5 +10,6 @@ public interface CasoService {
     Caso actualizarStatusCaso(Caso caso);
     List<Caso>listarCasos();
     Caso eliminarCaso(Integer idCaso);
+    List<Caso> obtenerCasoXDomicilio(String calle_num, String col, String cp, String alcaldia);
         
 }

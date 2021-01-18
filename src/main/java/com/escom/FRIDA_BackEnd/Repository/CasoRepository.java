@@ -10,5 +10,7 @@ public interface CasoRepository extends Repository<Caso, Integer> {
     Caso findByIdCaso(Integer idCaso);
     Caso save(Caso caso);
     Caso delete(Caso caso);
+    List<Caso> findByCalleNumeroAndColoniaAndCpAndAlcaldiaMunicipio(String calle_num, String colonia, String cp,
+            String alcaldia);
     
 }

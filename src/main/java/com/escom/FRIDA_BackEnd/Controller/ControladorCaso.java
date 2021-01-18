@@ -3,7 +3,7 @@ package com.escom.FRIDA_BackEnd.Controller;
 import com.escom.FRIDA_BackEnd.DTO.Mensaje;
 import com.escom.FRIDA_BackEnd.Entity.Caso;
 import com.escom.FRIDA_BackEnd.Entity.Mapas;
-import com.escom.FRIDA_BackEnd.Entity.MapasCaso;
+import com.escom.FRIDA_BackEnd.DTO.MapasCaso;
 import com.escom.FRIDA_BackEnd.Service.CasoService;
 import com.escom.FRIDA_BackEnd.Service.MapasService;
 import java.util.List;
@@ -39,11 +39,15 @@ public class ControladorCaso {
         
         casoService.crearCaso(caso);
         
-        //Caso caso2 = casoService.obtenerCasoXId();
+        List<Caso> caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
+                mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio());
         
-        //Mapas mapas = new Mapas(mapasCaso.getLatitud(), mapasCaso.getLongitud(), 1);
-        
-        //mapasService.crearMapas(mapas);
+        if(caso2 != null) {            
+            System.out.println("ID DEL CASO: " + caso2.get(0).getIdCaso());
+            Mapas m = mapasService.obtenerMapasXIdCaso(caso2.get(0).getIdCaso());       // Aux para obtener idMapas
+            Mapas mapas = new Mapas(m.getIdMapas(), mapasCaso.getLatitud(), mapasCaso.getLongitud(), caso2.get(0).getIdCaso());
+            mapasService.actualizarMapas(mapas);
+        }        
             
         return new ResponseEntity(new Mensaje("El caso ha sido guardado"), HttpStatus.CREATED);
     }

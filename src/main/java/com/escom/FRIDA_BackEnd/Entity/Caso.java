@@ -14,14 +14,14 @@ public class Caso {
     private Integer prioridad;
     @Column
     private String tipo_danio;    
-    @Column
-    private String calle_numero;
+    @Column(name = "calle_numero")
+    private String calleNumero;
     @Column
     private String colonia;    
     @Column
     private String cp;    
-    @Column
-    private String alcaldia_municipio;    
+    @Column(name = "alcaldia_municipio")
+    private String alcaldiaMunicipio;    
     @Column
     private String estado;    
     @Column
@@ -42,10 +42,10 @@ public class Caso {
             String estado, Integer status_caso, String fecha_reportado, String fecha_evaluado, Integer idCuestionario, Integer idCiudadano) {
         this.prioridad = prioridad;
         this.tipo_danio = tipo_danio;
-        this.calle_numero = calle_numero;
+        this.calleNumero = calle_numero;
         this.colonia = colonia;
         this.cp = cp;
-        this.alcaldia_municipio = alcaldia_municipio;
+        this.alcaldiaMunicipio = alcaldia_municipio;
         this.estado = estado;
         this.status_caso = status_caso;
         this.fecha_reportado = fecha_reportado;
@@ -80,11 +80,11 @@ public class Caso {
     }
 
     public String getCalle_numero() {
-        return calle_numero;
+        return calleNumero;
     }
 
     public void setCalle_numero(String calle_numero) {
-        this.calle_numero = calle_numero;
+        this.calleNumero = calle_numero;
     }
 
     public String getColonia() {
@@ -104,11 +104,11 @@ public class Caso {
     }
 
     public String getAlcaldia_municipio() {
-        return alcaldia_municipio;
+        return alcaldiaMunicipio;
     }
 
     public void setAlcaldia_municipio(String alcaldia_municipio) {
-        this.alcaldia_municipio = alcaldia_municipio;
+        this.alcaldiaMunicipio = alcaldia_municipio;
     }
 
     public String getEstado() {

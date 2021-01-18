@@ -40,5 +40,10 @@ public class CasoServiceImplement implements CasoService {
         }
         return caso;
     }
+
+    @Override
+    public List<Caso> obtenerCasoXDomicilio(String calle_num, String col, String cp, String alcaldia) {
+        return repositorio.findByCalleNumeroAndColoniaAndCpAndAlcaldiaMunicipio(calle_num, col, cp, alcaldia);
+    }
     
 }

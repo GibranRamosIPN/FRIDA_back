@@ -1,34 +1,21 @@
-package com.escom.FRIDA_BackEnd.Entity;
+package com.escom.FRIDA_BackEnd.DTO;
 
-import javax.persistence.*;
-
-@Entity
 public class MapasCaso {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCaso;
-    @Column
     private Integer prioridad;
-    @Column
-    private String tipo_danio;    
-    @Column
+    private String tipo_danio;
     private String calle_numero;
-    @Column
-    private String colonia;    
-    @Column
-    private String cp;    
-    @Column
-    private String alcaldia_municipio;    
-    @Column
-    private String estado;    
-    @Column
-    private Integer status_caso;    
-    @Column(name="fecha_reportado")
-    private String fecha_reportado;    
-    @Column(name="fecha_evaluado")
+    private String colonia;
+    private String cp;
+    private String alcaldia_municipio;
+    private String estado;
+    private Integer status_caso;
+    private String fecha_reportado;
     private String fecha_evaluado;
-    @Column
-    private Integer idCuestionario;    
+    private Integer idCuestionario;
+    private Integer idCiudadano;
+    private String latitud;
+    private String longitud;
 
     public Integer getIdCaso() {
         return idCaso;
@@ -149,10 +136,4 @@ public class MapasCaso {
     public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
-    @Column
-    private Integer idCiudadano;
-    @Column
-    private String latitud;
-    @Column
-    private String longitud;
 }
