@@ -3,19 +3,28 @@ package com.escom.FRIDA_BackEnd.Entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "imagen")
 public class Imagen {
+    public Imagen() {}
+
+    public Imagen(String nombreImagen, byte[] bytes, long idCaso) {
+        this.nombreImagen = nombreImagen;
+        this.bytes = bytes;
+        this.idCaso = idCaso;
+    }
     @Id
+    @Column(name = "id_imagen")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idImagen;
-    
-    @Column
-    private String imagen_caso;
-    
-    @Column
-    private Integer idCaso;
 
-    public Imagen() {
-    }
+    @Column(name = "nombre_imagen")
+    private String nombreImagen;
+
+    @Column(name = "bytes")
+    private byte[] bytes;
+
+    @Column(name = "id_caso")
+    private long idCaso;
 
     public Long getIdImagen() {
         return idImagen;
@@ -25,23 +34,29 @@ public class Imagen {
         this.idImagen = idImagen;
     }
 
-    public String getImagen_caso() {
-        return imagen_caso;
+    public String getNombreImagen() {
+        return nombreImagen;
     }
 
-    public void setImagen_caso(String imagen_caso) {
-        this.imagen_caso = imagen_caso;
+    public void setNombreImagen(String nombreImagen) {
+        this.nombreImagen = nombreImagen;
     }
 
-    public Integer getIdCaso() {
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
+    }
+
+    public long getIdCaso() {
         return idCaso;
     }
 
-    public void setIdCaso(Integer idCaso) {
+    public void setIdCaso(long idCaso) {
         this.idCaso = idCaso;
     }
-    
-    
-    
-    
+        
+        
 }

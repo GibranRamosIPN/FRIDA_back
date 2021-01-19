@@ -31,33 +31,28 @@ public class ControladorCaso {
     MapasService mapasService;
     
     @PostMapping("/nuevo/caso")
-    public ResponseEntity<?> crearMapasCaso(@RequestBody MapasCaso mapasCaso){
-        Caso caso = new Caso(mapasCaso.getPrioridad(),mapasCaso.getTipo_danio(),
-        mapasCaso.getCalle_numero(),mapasCaso.getColonia(),mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio(),
-        mapasCaso.getEstado(),mapasCaso.getStatus_caso(),mapasCaso.getFecha_reportado(),mapasCaso.getFecha_evaluado(),
-        mapasCaso.getIdCuestionario(),mapasCaso.getIdCiudadano());
-        
-        casoService.crearCaso(caso);
-        
+    public ResponseEntity<Caso> crearMapasCaso(@RequestBody MapasCaso mapasCaso){
         List<Caso> caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
                 mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio());
                 
-        if(caso2 != null) {            
-            // System.out.println("ID DEL CASO: " + caso2.get(0).getIdCaso());
-            Mapas m = mapasService.obtenerMapasXIdCaso(caso2.get(0).getIdCaso());       // Aux para obtener idMapas
-            if (m != null) {    // Significa que ya hay un registro y solo se actualiza
-                Mapas mapas = new Mapas(m.getIdMapas(), mapasCaso.getLat(), mapasCaso.getLng(), caso2.get(0).getIdCaso());
-                mapasService.actualizarMapas(mapas);
-            } else {            // Se crea un nuevo registro
-                Mapas mapas = new Mapas();                
-                mapas.setLat(mapasCaso.getLat());
-                mapas.setLng(mapasCaso.getLng());
-                mapas.setIdCaso(caso2.get(0).getIdCaso());
-                mapasService.actualizarMapas(mapas);
-            }
-        }        
+        if(caso2.isEmpty()) { 
+            Caso caso = new Caso(mapasCaso.getPrioridad(),mapasCaso.getTipo_danio(),
+            mapasCaso.getCalle_numero(),mapasCaso.getColonia(),mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio(),
+            mapasCaso.getEstado(),mapasCaso.getStatus_caso(),mapasCaso.getFecha_reportado(),mapasCaso.getFecha_evaluado(),
+            mapasCaso.getIdCuestionario(),mapasCaso.getIdCiudadano());
+            casoService.crearCaso(caso);
             
-        return new ResponseEntity(new Mensaje("El caso ha sido guardado"), HttpStatus.CREATED);
+            caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
+                mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio());
+            
+            Mapas mapas = new Mapas();
+            mapas.setLat(mapasCaso.getLat());
+            mapas.setLng(mapasCaso.getLng());
+            mapas.setIdCaso(caso2.get(0).getIdCaso());
+            mapasService.actualizarMapas(mapas);
+            return new ResponseEntity(caso2.get(0), HttpStatus.OK);
+        }
+        return new ResponseEntity(caso2.get(0), HttpStatus.OK);
     }
     
     @GetMapping(path = "/listar/casos")
