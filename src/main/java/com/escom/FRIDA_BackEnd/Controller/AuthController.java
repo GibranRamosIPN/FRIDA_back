@@ -110,6 +110,7 @@ public class AuthController {
         if (isBrigadista) {
             Usuario user = usuarioService.getByNombreUsuario(usuario.getNombreUsuario()).get();
             Brigadista brig = new Brigadista(user.getId());
+            brig.setEstado("Disponible");
             brigadistaService.crearBrigadista(brig);
         }
             
