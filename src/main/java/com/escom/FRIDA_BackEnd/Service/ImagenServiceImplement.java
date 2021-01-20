@@ -24,8 +24,8 @@ public class ImagenServiceImplement implements ImagenService{
     }
 
     @Override
-    public Optional<Imagen> obtenerImagenXNombre(String nombre_imagen) {
-        return repositorio.findByNombreImagen(nombre_imagen);
+    public List<Imagen> obtenerImagenXidCaso(Long idCaso) {
+        return repositorio.findByIdCaso(idCaso);
     }
     
     @Override

@@ -6,11 +6,13 @@ import com.escom.FRIDA_BackEnd.Repository.ImagenRepository;
 import com.escom.FRIDA_BackEnd.Service.ImagenService;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
+import org.aspectj.util.LangUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,12 +33,15 @@ public class ControladorImagen {
         return new ResponseEntity(new Mensaje("La imagen ha sido guardada."), HttpStatus.CREATED);
     }
     
-    @GetMapping(path = { "/get/{imageName}" })
-    public Imagen getImage(@PathVariable("imageName") String imageName) throws IOException {
-        final Optional<Imagen> retrievedImage = repositorio.findByNombreImagen(imageName);
-        Imagen img = new Imagen(retrievedImage.get().getNombreImagen(),
-            decompressBytes(retrievedImage.get().getBytes()),retrievedImage.get().getIdCaso());
-        return img;
+    @GetMapping(path = { "/get/imagenes/{idCaso}" })
+    public List<Imagen> getImage(@PathVariable("idCaso") Long idCaso) throws IOException {
+        List<Imagen> retrievedImage = repositorio.findByIdCaso(idCaso);
+        List<Imagen> imgs = new ArrayList<>();
+        for(Imagen i: retrievedImage) {     // Recorriendo lista de imagenes almacenadas del caso
+            Imagen img = new Imagen(i.getNombreImagen(), decompressBytes(i.getBytes()), i.getIdCaso());
+            imgs.add(img);
+        }
+        return imgs;
     }
     
     public static byte[] compressBytes(byte[] data) {

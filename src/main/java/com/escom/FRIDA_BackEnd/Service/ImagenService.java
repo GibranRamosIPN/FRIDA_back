@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public interface ImagenService {
     
     Imagen crearImagen(Imagen imagen);
-    Optional<Imagen> obtenerImagenXNombre(String nombre_imagen);
+    List<Imagen> obtenerImagenXidCaso(Long idCaso);
     List<Imagen>listarImagenes();
     Imagen eliminarImagen(Integer idImagen);
     Imagen actualizarImagen(Imagen imagen);

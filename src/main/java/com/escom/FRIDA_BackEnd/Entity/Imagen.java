@@ -20,7 +20,7 @@ public class Imagen {
     @Column(name = "nombre_imagen")
     private String nombreImagen;
 
-    @Column(name = "bytes")
+    @Column(name = "bytes", columnDefinition="LONGBLOB")
     private byte[] bytes;
 
     @Column(name = "id_caso")
@@ -57,6 +57,4 @@ public class Imagen {
     public void setIdCaso(long idCaso) {
         this.idCaso = idCaso;
     }
-        
-        
 }
