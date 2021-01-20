@@ -193,8 +193,8 @@ public class AuthController {
     }
     
     @GetMapping(path = "/usuarios/{id}")
-    public Optional<Usuario> listarId(@PathVariable("id") Long id) {
-        return usuarioService.getById(id);
+    public Usuario listarId(@PathVariable("id") Long id) {
+        return usuarioService.getByIdUsuario(id);
     }
         
     @GetMapping(path = "/usuarios")

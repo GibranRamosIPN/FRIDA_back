@@ -2,10 +2,14 @@ package com.escom.FRIDA_BackEnd.Controller;
 
 // Clase que hace referencia directamente al proyecto de FrontEnd
 
+import com.escom.FRIDA_BackEnd.DTO.UsuarioBrigadista;
 import com.escom.FRIDA_BackEnd.Entity.Brigadista;
 import com.escom.FRIDA_BackEnd.Entity.Caso;
+import com.escom.FRIDA_BackEnd.Entity.Usuario;
 import com.escom.FRIDA_BackEnd.Service.BrigadistaService;
 import com.escom.FRIDA_BackEnd.Service.CasoService;
+import com.escom.FRIDA_BackEnd.Service.UsuarioService;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +25,9 @@ public class ControladorBrigadista {
     @Autowired
     CasoService casoService;
     
+    @Autowired
+    UsuarioService usuarioService;
+    
     @GetMapping("/lobby/brigadistas")
     public List<Brigadista>listar() {
         return brigadistaService.listarBrigadistas();
@@ -32,8 +39,70 @@ public class ControladorBrigadista {
     }
     
     @GetMapping(path = "/listar/brigadistas/{alcaldia}")
-    public List<Brigadista> listarXAlcaldia(@PathVariable("alcaldia") String alcaldia) {
-        return brigadistaService.listarXalcaldia(alcaldia);
+    public List<UsuarioBrigadista> listarXAlcaldia(@PathVariable("alcaldia") String alcaldia) {
+        List<Brigadista> brig = new ArrayList<>();
+        List<UsuarioBrigadista> uBrig = new ArrayList<>();
+        
+        // Se obtienen todos los brigadistas cuya última alcaldía fue la del caso por asignar
+        // y que estén disponibles
+        brig = brigadistaService.listarXalcaldiaYdisponibles(alcaldia);
+        
+        for (Brigadista b : brig) {         // Recorriendo lista de brigadistas
+            // Se consulta los datos de usuario con el idUsuario contenido en la tabla Brigadista
+            // y se agrega a la lista de UsuarioBrigadista
+            Usuario usuario = new Usuario();
+            UsuarioBrigadista uBrigIndividual = new UsuarioBrigadista();
+            usuario = usuarioService.getByIdUsuario(b.getIdUsuario());
+            uBrigIndividual.setIdUsuario(usuario.getId());
+            uBrigIndividual.setNombre(usuario.getNombre());
+            uBrigIndividual.setApellido_paterno(usuario.getApellido_paterno());
+            uBrigIndividual.setApellido_materno(usuario.getApellido_materno());            
+            uBrigIndividual.setUltima_alcaldia_municipio(b.getUltimaAlcaldiaMunicipio());
+            uBrigIndividual.setIdBrigadista(b.getIdBrigadista());            
+
+            uBrig.add(uBrigIndividual);
+        }
+        
+        return uBrig;
+    }
+    
+    /* Este método se manda a llamar si el método anterior de buscar brigadistas disponibles por alcaldía 
+       no retorna resultados */
+    @GetMapping("/listar/brigadistas/disponibles")
+    public List<UsuarioBrigadista> listarBrigadistasDisponibles() {        
+        List<Brigadista> brig = new ArrayList<>();
+        List<UsuarioBrigadista> uBrig = new ArrayList<>();        
+        
+        // Se obtienen todos los brigadistas que estén disponibles
+        brig = brigadistaService.listarDisponibles();
+        
+        for (Brigadista b : brig) {         // Recorriendo lista de brigadistas disponibles
+            /* Se consulta los datos de usuario con el idUsuario contenido en la tabla Brigadista
+               y se agrega a la lista de UsuarioBrigadista */
+            Usuario usuario = new Usuario();
+            UsuarioBrigadista uBrigIndividual = new UsuarioBrigadista();
+            usuario = usuarioService.getByIdUsuario(b.getIdUsuario());
+            uBrigIndividual.setIdUsuario(usuario.getId());
+            uBrigIndividual.setNombre(usuario.getNombre());
+            uBrigIndividual.setApellido_paterno(usuario.getApellido_paterno());
+            uBrigIndividual.setApellido_materno(usuario.getApellido_materno());            
+            uBrigIndividual.setUltima_alcaldia_municipio(b.getUltimaAlcaldiaMunicipio());
+            uBrigIndividual.setIdBrigadista(b.getIdBrigadista());            
+
+            uBrig.add(uBrigIndividual);
+        }
+        
+        return uBrig;
+    }
+    
+    @GetMapping("/listar/brigadista/{idCasoAsignado}")
+    public Usuario listarBrigadistaXidCasoAsignado(@PathVariable("idCasoAsignado") Integer idCasoAsignado) {
+        Brigadista brig = brigadistaService.getBrigadistaXidCasoAsignado(idCasoAsignado);
+        Usuario usuarioBrig = new Usuario();
+        
+        usuarioBrig = usuarioService.getById(brig.getIdUsuario()).get();
+        
+        return usuarioBrig;
     }
     
     @PostMapping("/lobby/registrar/brigadista")

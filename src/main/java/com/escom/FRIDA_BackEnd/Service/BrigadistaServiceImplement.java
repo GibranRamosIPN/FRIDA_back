@@ -42,12 +42,23 @@ public class BrigadistaServiceImplement implements BrigadistaService {
     }
 
     @Override
-    public List<Brigadista> listarXalcaldia(String alcaldia) {
-        return repositorio.findByUltimaAlcaldiaMunicipio(alcaldia);
+    public List<Brigadista> listarXalcaldiaYdisponibles(String alcaldia) {
+        return repositorio.findByUltimaAlcaldiaMunicipioAndEstado(alcaldia, "Disponible");
     }    
+    
+    @Override
+    public List<Brigadista> listarDisponibles() {
+        return repositorio.findByEstado("Disponible");
+    }
 
     @Override
     public Brigadista getBrigadistaByIdUsuario(Long idUsuario) {
         return repositorio.findByIdUsuario(idUsuario);
     }
+
+    @Override
+    public Brigadista getBrigadistaXidCasoAsignado(Integer idCasoAsignado) {
+        return repositorio.findByIdCasoAsignado(idCasoAsignado);
+    }
+    
 }

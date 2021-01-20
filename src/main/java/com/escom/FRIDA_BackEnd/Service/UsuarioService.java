@@ -25,6 +25,10 @@ public class UsuarioService {
         return usuarioRepository.findById(id);
     }
     
+    public Usuario getByIdUsuario(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario).get();
+    }
+    
     public List<Usuario> listar() {
         return usuarioRepository.findAll();
     }

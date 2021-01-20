@@ -10,5 +10,7 @@ public interface BrigadistaRepository extends Repository<Brigadista, Integer> {
     Brigadista save(Brigadista b);
     Brigadista delete(Brigadista b);
     Brigadista findByIdUsuario(Long idUsuario);
-    List<Brigadista> findByUltimaAlcaldiaMunicipio(String alcaldia_municipio);
+    Brigadista findByIdCasoAsignado(Integer idCasoAsignado);
+    List<Brigadista> findByUltimaAlcaldiaMunicipioAndEstado(String alcaldia_municipio, String estado);
+    List<Brigadista> findByEstado(String estado);
 }
