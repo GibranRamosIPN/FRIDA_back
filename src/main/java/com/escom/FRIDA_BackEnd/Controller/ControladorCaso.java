@@ -90,7 +90,7 @@ public class ControladorCaso {
             Caso caso = casoService.obtenerCasoXId(brigadista.getIdCasoAsignado());
             Mapas mapa = mapasService.obtenerMapasXIdCaso(caso.getIdCaso());
             
-            List<Imagen> imagenes = imagenService.obtenerImagenXidCaso(Long.parseLong(caso.getIdCaso().toString()));
+            List<Imagen> imagenes = imagenService.obtenerImagenXidCaso(caso.getIdCaso());
             List<Imagen> imgs = new ArrayList<>();
             for(Imagen i: imagenes) {     // Recorriendo lista de imagenes almacenadas del caso
                 Imagen img = new Imagen(i.getNombreImagen(), decompressBytes(i.getBytes()), i.getIdCaso());

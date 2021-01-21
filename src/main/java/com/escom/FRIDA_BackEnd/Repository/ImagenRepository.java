@@ -6,7 +6,7 @@ import org.springframework.data.repository.Repository;
 
 public interface ImagenRepository extends Repository<Imagen, Integer> {
     List<Imagen>findAll();
-    List<Imagen> findByIdCaso(Long idCaso);
+    List<Imagen> findByIdCaso(Integer idCaso);
     Imagen save(Imagen imagen);
     Imagen delete(Imagen imagen);    
 }

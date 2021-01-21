@@ -31,7 +31,7 @@ public class ControladorImagen {
     }
     
     @GetMapping(path = { "/get/imagenes/{idCaso}" })
-    public List<Imagen> getImage(@PathVariable("idCaso") Long idCaso) throws IOException {
+    public List<Imagen> getImage(@PathVariable("idCaso") Integer idCaso) throws IOException {
         List<Imagen> retrievedImage = repositorio.findByIdCaso(idCaso);
         List<Imagen> imgs = new ArrayList<>();
         for(Imagen i: retrievedImage) {     // Recorriendo lista de imagenes almacenadas del caso

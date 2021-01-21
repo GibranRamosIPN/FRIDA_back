@@ -56,7 +56,7 @@ public class ControladorArticulo {
         return articuloService.eliminarArticulo(id);
     }
     
-    @PutMapping(path = "/crear/articuloExistencia")
+    @PostMapping(path = "/crear/articuloExistencia")
     public ResponseEntity<?> crearArticuloExistencia(@RequestBody ArticuloExistencia art) {
         Integer articuloId;
         Articulo articulo = articuloService.articuloByNombre(art.getNombre());
