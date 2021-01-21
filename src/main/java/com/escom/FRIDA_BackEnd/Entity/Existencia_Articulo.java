@@ -11,6 +11,8 @@ public class Existencia_Articulo {
     @Column
     private Integer existencia;
     @Column
+    private Integer urgencia;
+    @Column
     private Integer cant_req;
     @Column
     private Integer idCentro;
@@ -42,6 +44,14 @@ public class Existencia_Articulo {
 
     public void setExistencia(Integer existencia) {
         this.existencia = existencia;
+    }
+
+    public Integer getUrgencia() {
+        return urgencia;
+    }
+
+    public void setUrgencia(Integer urgencia) {
+        this.urgencia = urgencia;
     }
 
     public Integer getCant_req() {

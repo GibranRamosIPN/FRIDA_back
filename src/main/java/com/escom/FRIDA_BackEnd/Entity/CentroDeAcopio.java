@@ -20,6 +20,10 @@ public class CentroDeAcopio {
     private String alcaldia_municipio;    
     @Column
     private String estado;
+    @Column
+    private String lat;
+    @Column
+    private String lng;
 
     public CentroDeAcopio() {
     }
@@ -79,5 +83,23 @@ public class CentroDeAcopio {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+    
+    
     
 }

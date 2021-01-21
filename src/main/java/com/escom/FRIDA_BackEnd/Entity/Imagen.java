@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Imagen {
     public Imagen() {}
 
-    public Imagen(String nombreImagen, byte[] bytes, long idCaso) {
+    public Imagen(String nombreImagen, byte[] bytes, Integer idCaso) {
         this.nombreImagen = nombreImagen;
         this.bytes = bytes;
         this.idCaso = idCaso;
@@ -24,7 +24,7 @@ public class Imagen {
     private byte[] bytes;
 
     @Column(name = "id_caso")
-    private long idCaso;
+    private Integer idCaso;
 
     public Long getIdImagen() {
         return idImagen;
@@ -50,11 +50,11 @@ public class Imagen {
         this.bytes = bytes;
     }
 
-    public long getIdCaso() {
+    public Integer getIdCaso() {
         return idCaso;
     }
 
-    public void setIdCaso(long idCaso) {
+    public void setIdCaso(Integer idCaso) {
         this.idCaso = idCaso;
     }
 }
