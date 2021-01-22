@@ -7,10 +7,12 @@ import com.escom.FRIDA_BackEnd.Entity.Mapas;
 import com.escom.FRIDA_BackEnd.DTO.MapasCaso;
 import com.escom.FRIDA_BackEnd.DTO.Mensaje;
 import com.escom.FRIDA_BackEnd.Entity.Brigadista;
+import com.escom.FRIDA_BackEnd.Entity.Cuestionario;
 import com.escom.FRIDA_BackEnd.Entity.Imagen;
 import com.escom.FRIDA_BackEnd.Entity.Usuario;
 import com.escom.FRIDA_BackEnd.Service.BrigadistaService;
 import com.escom.FRIDA_BackEnd.Service.CasoService;
+import com.escom.FRIDA_BackEnd.Service.CuestionarioService;
 import com.escom.FRIDA_BackEnd.Service.ImagenService;
 import com.escom.FRIDA_BackEnd.Service.MapasService;
 import com.escom.FRIDA_BackEnd.Service.UsuarioService;
@@ -51,16 +53,25 @@ public class ControladorCaso {
     @Autowired
     ImagenService imagenService;
     
+    @Autowired
+    CuestionarioService cuestionarioService;
+    
     @PostMapping("/nuevo/caso")
     public ResponseEntity<Caso> crearMapasCaso(@RequestBody MapasCaso mapasCaso){
         List<Caso> caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
                 mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio());
                 
-        if(caso2.isEmpty()) { 
+        if(caso2.isEmpty()) {
+            Cuestionario cuestionario = new Cuestionario();
+            System.out.println(cuestionario);
+            cuestionario.setCalificacion(mapasCaso.getCalificacion());
+            System.out.println(cuestionario);
+            cuestionario = cuestionarioService.crearCuestionario(cuestionario);
+            
             Caso caso = new Caso(mapasCaso.getPrioridad(),mapasCaso.getTipo_danio(),
             mapasCaso.getCalle_numero(),mapasCaso.getColonia(),mapasCaso.getCp(),mapasCaso.getAlcaldia_municipio(),
             mapasCaso.getEstado(),mapasCaso.getStatus_caso(),mapasCaso.getFecha_reportado(),mapasCaso.getFecha_evaluado(),
-            mapasCaso.getIdCuestionario(),mapasCaso.getIdCiudadano());
+            cuestionario.getIdCuestionario(),mapasCaso.getIdCiudadano());
             casoService.crearCaso(caso);
             
             caso2 = casoService.obtenerCasoXDomicilio(mapasCaso.getCalle_numero(), mapasCaso.getColonia(),
@@ -71,7 +82,6 @@ public class ControladorCaso {
             mapas.setLng(mapasCaso.getLng());
             mapas.setIdCaso(caso2.get(0).getIdCaso());
             mapasService.actualizarMapas(mapas);
-            return new ResponseEntity(caso2.get(0), HttpStatus.OK);
         }
         return new ResponseEntity(caso2.get(0), HttpStatus.OK);
     }

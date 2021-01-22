@@ -12,10 +12,10 @@ public class MapasCaso {
     private Integer status_caso;
     private String fecha_reportado;
     private String fecha_evaluado;
-    private Integer idCuestionario;
     private Integer idCiudadano;
     private String lat;
     private String lng;
+    private Float calificacion;
 
     public Integer getIdCaso() {
         return idCaso;
@@ -105,14 +105,6 @@ public class MapasCaso {
         this.fecha_evaluado = fecha_evaluado;
     }
 
-    public Integer getIdCuestionario() {
-        return idCuestionario;
-    }
-
-    public void setIdCuestionario(Integer idCuestionario) {
-        this.idCuestionario = idCuestionario;
-    }
-
     public Integer getIdCiudadano() {
         return idCiudadano;
     }
@@ -137,5 +129,12 @@ public class MapasCaso {
         this.lng = lng;
     }
 
-    
+    public Float getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Float calificacion) {
+        this.calificacion = calificacion;
+    }
+   
 }
