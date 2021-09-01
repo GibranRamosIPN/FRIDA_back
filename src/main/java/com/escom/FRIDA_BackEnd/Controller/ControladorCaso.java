@@ -112,6 +112,7 @@ public class ControladorCaso {
             info.setTipo_danio(caso.getTipo_danio());
             info.setCalle_numero(caso.getCalle_numero());
             info.setColonia(caso.getColonia());
+            info.setCp(caso.getCp());
             info.setAlcaldia_municipio(caso.getAlcaldia_municipio());
             info.setEstado(caso.getEstado());
             info.setStatus_caso(caso.getStatus_caso());
